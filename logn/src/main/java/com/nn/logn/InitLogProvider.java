@@ -12,8 +12,8 @@ public class InitLogProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
         LogUtils.getConfig(getContext())
-                .setLogSwitch(BuildConfig.DEBUG)// 设置 log 总开关，包括输出到控制台和文件，默认开
-                .setConsoleSwitch(BuildConfig.DEBUG)// 设置是否输出到控制台开关，默认开
+                .setLogSwitch(true)// 设置 log 总开关，包括输出到控制台和文件，默认开
+                .setConsoleSwitch(true)// 设置是否输出到控制台开关，默认开
                 // 当全局标签不为空时，我们输出的 log 全部为该 tag，
                 // 为空时，如果传入的 tag 为空那就显示类名，否则显示 tag
                 // 通过vTag等现场设置的Tag优先级最高
@@ -31,31 +31,40 @@ public class InitLogProvider extends ContentProvider {
                 .setStackOffset(0)// 设置栈偏移，比如二次封装的话就需要设置，默认为 0
                 .setSaveDays(3);// 设置日志可保留天数，默认为 -1 表示无限时长
 
-        LogUtils.d("<<<<<<<<<<<<<<<<<<<<<<<<<<🚀LogUtils初始化成功🚀>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        String msg = "<<<<<<<<<<<<<<<<<<<<<<<<<<🚀LogUtils初始化成功🚀>>>>>>>>>>>>>>>>>>>>>>>>>>\n" +
+                " _        _______  _______          _______  _                _ \n" +
+                "( \\      (  ___  )(  ____ \\        (  ___  )| \\    /\\        ( )\n" +
+                "| (      | (   ) || (    \\/        | (   ) ||  \\  / /        | |\n" +
+                "| |      | |   | || |              | |   | ||  (_/ /         | |\n" +
+                "| |      | |   | || | ____         | |   | ||   _ (          | |\n" +
+                "| |      | |   | || | \\_  )        | |   | ||  ( \\ \\         (_)\n" +
+                "| (____/\\| (___) || (___) |        | (___) ||  /  \\ \\         _ \n" +
+                "(_______/(_______)(_______)        (_______)|_/    \\/        (_)\n" +
+                "                                                                ";
+        LogUtils.d(msg);
+        return true;
+    }
 
-        return false;
-    }
-    
     @Override
-    public Cursor query( Uri uri,  String[] strings,  String s,  String[] strings1,  String s1) {
+    public Cursor query(Uri uri, String[] strings, String s, String[] strings1, String s1) {
         return null;
     }
-    
+
     @Override
-    public String getType( Uri uri) {
+    public String getType(Uri uri) {
         return null;
     }
-    
+
     @Override
-    public Uri insert( Uri uri,  ContentValues contentValues) {
+    public Uri insert(Uri uri, ContentValues contentValues) {
         return null;
     }
     @Override
-    public int delete( Uri uri,  String s,  String[] strings) {
+    public int delete(Uri uri, String s, String[] strings) {
         return 0;
     }
     @Override
-    public int update( Uri uri,  ContentValues contentValues,  String s,  String[] strings) {
+    public int update(Uri uri, ContentValues contentValues, String s, String[] strings) {
         return 0;
     }
 }

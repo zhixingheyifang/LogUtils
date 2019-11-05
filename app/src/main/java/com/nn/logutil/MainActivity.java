@@ -1,12 +1,10 @@
 package com.nn.logutil;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.nn.logn.LogUtils;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.logging.Logger;
+import com.nn.logn.LogUtils;
 
 import timber.log.Timber;
 
@@ -17,15 +15,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         installTimber();
-        LogUtils.v("hello");
-        Timber.d("hello");
-        Timber.e(new NullPointerException("自定义"),"异常报错测试");
-        Timber.tag("AAAA").d("hello");
+        LogUtils.d("hello");
+//        Timber.d("hello");
+//        Timber.e(new NullPointerException("自定义"),"异常报错测试");
+//        Timber.tag("AAAA").d("hello");
     }
     private void installTimber() {
+        LogUtils.getConfig(this).setConsoleFilter(LogUtils.D);
         Timber.plant(new Timber.DebugTree() {
-            @Override protected void log(int priority, String tag, String message, Throwable t) {
-                LogUtils.log(priority,tag,message,t);
+            @Override
+            protected void log(int priority, String tag, String message, Throwable t) {
+                LogUtils.log(priority, tag, message, t);
             }
         });
     }

@@ -113,7 +113,10 @@ public final class LogUtils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    public static Config getConfig(Context context) {
+    public synchronized static Config getConfig(Context context) {
+        if (CONFIG != null) {
+            return CONFIG;
+        }
         return CONFIG = new Config(context);
     }
 

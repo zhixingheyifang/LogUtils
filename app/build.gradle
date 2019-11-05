@@ -29,4 +29,5 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     implementation project(":logn")
+//    implementation 'com.github.zhixingheyifang:LogUtils:1.0.4'
 }
