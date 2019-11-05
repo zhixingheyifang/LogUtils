@@ -1,4 +1,4 @@
-package com.power.lot.utils;
+package com.nn.logn;
 
 import android.app.ActivityManager;
 import android.content.ClipData;
@@ -1082,7 +1082,7 @@ public final class LogUtils {
                 sb.append(bundle2String(mExtras));
                 sb.append('}');
             }
-            if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
                 Intent mSelector = intent.getSelector();
                 if (mSelector != null) {
                     if (!first) {
