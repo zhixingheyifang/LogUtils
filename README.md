@@ -30,6 +30,15 @@ LogUtils.getConfig(this)
         LogUtils.e(list);
 ```
 
+`timber兼容`
+```java
+Timber.plant(new Timber.DebugTree() {
+            @Override protected void log(int priority, String tag, String message, Throwable t) {
+                LogUtils.log(priority,tag,message,t);
+            }
+        });
+
+
 `cat profile`
 ```
 highlight-list:

@@ -15,11 +15,6 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.IntDef;
-import androidx.annotation.IntRange;
-import androidx.annotation.RequiresApi;
-import androidx.collection.SimpleArrayMap;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -50,6 +45,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Formatter;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -76,7 +72,6 @@ public final class LogUtils {
     public static final int E = Log.ERROR;
     public static final int A = Log.ASSERT;
 
-    @IntDef({V, D, I, W, E, A})
     @Retention(RetentionPolicy.SOURCE)
     public @interface TYPE {
     }
@@ -111,7 +106,8 @@ public final class LogUtils {
 
     private static final ExecutorService EXECUTOR = Executors.newSingleThreadExecutor();
 
-    private static final SimpleArrayMap<Class, IFormatter> I_FORMATTER_MAP = new SimpleArrayMap<>();
+    // nn:兼容非androidx的project，SimpleArrayMap替换为HashMap
+    private static final HashMap<Class, IFormatter> I_FORMATTER_MAP = new HashMap<>();
 
     private LogUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
@@ -785,17 +781,17 @@ public final class LogUtils {
             return this;
         }
 
-        public final Config setStackDeep(@IntRange(from = 1) final int stackDeep) {
+        public final Config setStackDeep(final int stackDeep) {
             mStackDeep = stackDeep;
             return this;
         }
 
-        public final Config setStackOffset(@IntRange(from = 0) final int stackOffset) {
+        public final Config setStackOffset(final int stackOffset) {
             mStackOffset = stackOffset;
             return this;
         }
 
-        public final Config setSaveDays(@IntRange(from = 1) final int saveDays) {
+        public final Config setSaveDays(final int saveDays) {
             mSaveDays = saveDays;
             return this;
         }
@@ -1098,7 +1094,6 @@ public final class LogUtils {
             return sb.toString();
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
         private static void clipData2String(ClipData clipData, StringBuilder sb) {
             ClipData.Item item = clipData.getItemAt(0);
             if (item == null) {
