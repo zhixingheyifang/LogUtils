@@ -121,11 +121,11 @@ tmp/
 
 # TeXlipse plugin
 .texlipseXml version="1.0" encoding="UTF-8"?>
-/gradle.properties
+#/gradle.properties
 sign.properties
 
 captures/*
 
-gradle/wrapper/gradle-wrapper.properties
+#gradle/wrapper/gradle-wrapper.properties
 
 .self
