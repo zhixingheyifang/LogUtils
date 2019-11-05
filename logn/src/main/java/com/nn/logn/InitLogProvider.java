@@ -1,13 +1,27 @@
-# LogUtils
-`API使用`
-```
-LogUtils.getConfig(this)
+package com.nn.logn;
+
+
+import android.content.ContentProvider;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+/**
+ * @author apple
+ */
+public class InitLogProvider extends ContentProvider {
+    @Override
+    public boolean onCreate() {
+        LogUtils.getConfig(getContext())
                 .setLogSwitch(BuildConfig.DEBUG)// 设置 log 总开关，包括输出到控制台和文件，默认开
                 .setConsoleSwitch(BuildConfig.DEBUG)// 设置是否输出到控制台开关，默认开
                 // 当全局标签不为空时，我们输出的 log 全部为该 tag，
                 // 为空时，如果传入的 tag 为空那就显示类名，否则显示 tag
                 // 通过vTag等现场设置的Tag优先级最高
-                .setGlobalTag("AAAA")
+//                .setGlobalTag("AAAA")
                 .setTagPrefix("NN_")
                 .setLogHeadSwitch(true)// 设置 log 头信息开关，默认为开
                 .setLog2FileSwitch(false)// 打印 log 时是否存到文件的开关，默认关
@@ -20,36 +34,32 @@ LogUtils.getConfig(this)
                 .setStackDeep(1)// log 栈深度，默认为 1
                 .setStackOffset(0)// 设置栈偏移，比如二次封装的话就需要设置，默认为 0
                 .setSaveDays(3);// 设置日志可保留天数，默认为 -1 表示无限时长
-        LogUtils.w("全局");
-        LogUtils.vTag("MyTag", "测试1");
-        LogUtils.file("文件内容内容内容内容");
-        List<String> list = new ArrayList<>();
-        list.add("AAAA");
-        list.add("BBBB");
-        list.add("CCCC");
-        LogUtils.e(list);
-```
 
-`cat profile`
-```
-highlight-list:
-  - 'Shutting down VM'
-  - 'FATAL EXCEPTION: main'
-  - 'thread exiting with uncaught exception'
-  #- 'exceptions'
-  - 'Exception'
-  - 'Caused by:'
-  - '.java'
-  - 'URL: http:'
-  - 'URL: https:'
-  - '开始-'
-  - '起始-'
-  - '结束-'
-  - '修改-'
-  - '<<<<<<<<<<<<<<<<<<<<<<<<<<'
-  - '>>>>>>>>>>>>>>>>>>>>>>>>>>'
-  - 'main,'
-```
+        LogUtils.d("<<<<<<<<<<<<<<<<<<<<<<<<<<🚀LogUtils初始化成功🚀>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
-##源库
-https://github.com/Blankj/ALog
+        return false;
+    }
+    @Nullable
+    @Override
+    public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
+        return null;
+    }
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        return null;
+    }
+    @Nullable
+    @Override
+    public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
+        return null;
+    }
+    @Override
+    public int delete(@NonNull Uri uri, @Nullable String s, @Nullable String[] strings) {
+        return 0;
+    }
+    @Override
+    public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
+        return 0;
+    }
+}

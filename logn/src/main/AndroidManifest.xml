@@ -1,2 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nn.logn" />
+    package="com.nn.logn">
+
+    <application>
+        <provider
+            android:name=".InitLogProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"></provider>
+
+    </application>
+</manifest>
